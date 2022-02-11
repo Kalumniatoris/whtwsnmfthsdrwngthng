@@ -1,6 +1,6 @@
 function setup() {
-  createCanvas(600, 400);
-  pg=createGraphics(600,400);
+  createCanvas(screen.availWidth,screen.availHeight);
+  pg=createGraphics(screen.availWidth,screen.availHeight);
   
   pg.stroke(128,200,128);
   pg.strokeWeight(1.5)
@@ -17,7 +17,9 @@ l3 = 50;
 
 s1 = 1;
 s2 = -1;
-s3 = 1;
+s3 = 0.5;
+
+hider=false;
 function draw() {
   
 
@@ -38,9 +40,10 @@ function draw() {
   pg.point(ax3,ay3);
   image(pg,0,0)
 
+  if(!hider){
   line(cx, cy, ax, ay);
   line(ax, ay, ax2, ay2);
-  line(ax2, ay2, ax3, ay3);
+  line(ax2, ay2, ax3, ay3);}
 
   //p.push({ ax3, ay3 });
   //p.forEach(q => { point(q.ax3, q.ay3) });
@@ -57,6 +60,7 @@ function draw() {
 
 
 function clearP() {
+  i=0;
   pg.background(0);
 }
 
@@ -80,4 +84,8 @@ function sets2(x) {
 
 function sets3(x) {
   s3 = x;
+}
+
+function fhider(x){
+hider=x.checked;
 }
