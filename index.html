@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sketch</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/p5.js"></script>
+    <script src="libraries/p5.sound.js"></script>
+    <script src="libraries/quicksettings.js"></script>
+    <script src="libraries/p5.gui.js"></script>
+  </head>
+
+  <body>
+    <script src="sketch.js"></script>
+
+    <button onclick="clearP()">clear</button>
+    <div>
+      <form>
+
+        <label>l1</label><input type="range" min=0 max=100 step="1" value=50 oninput="setl1(this.value)" onchange="setl1(this.value)">
+        <label>s1</label><input type="range" min=-1 max=1 step="0.01" value="1" oninput="sets1(this.value)" onchange="sets1(this.value)">
+       
+        <br>
+        <label>l2</label><input type="range" min=0 max=100 step="1" value=50 oninput="setl2(this.value)" onchange="setl2(this.value)">
+        <label>s2</label><input type="range" min=-1 max=1 step="0.01" value="-1" oninput="sets2(this.value)" onchange="sets2(this.value)">
+        <br>
+        <label>l3</label><input type="range" min=0 max=100 step="1" value=50 oninput="setl3(this.value)" onchange="setl3(this.value)">
+        <label>s2</label><input type="range" min=-1 max=1 step="0.01" value="1" oninput="sets2(this.value)" onchange="sets2(this.value)">
+      
+      
+      
+      </form>
+
+    </div>
+  </body>
+</html>
