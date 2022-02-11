@@ -1,4 +1,8 @@
+var py=null;
+var px=null;
+
 function setup() {
+
   createCanvas(screen.availWidth,screen.availHeight);
   pg=createGraphics(screen.availWidth,screen.availHeight);
   
@@ -19,6 +23,7 @@ s1 = 1;
 s2 = -1;
 s3 = 0.5;
 
+
 hider=false;
 function draw() {
   
@@ -38,6 +43,9 @@ function draw() {
  
 
   pg.point(ax3,ay3);
+  if(px>0) pg.line(px,py,ax3,ay3);
+  px=ax3;
+  py=ay3;
   image(pg,0,0)
 
   if(!hider){
@@ -60,6 +68,7 @@ function draw() {
 
 
 function clearP() {
+  px=0;py=0;
   i=0;
   pg.background(0);
 }
