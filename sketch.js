@@ -23,7 +23,7 @@ s1 = 1;
 s2 = -1;
 s3 = 0.5;
 
-
+tsp=360
 hider=false;
 function draw() {
   
@@ -55,9 +55,9 @@ function draw() {
 
   //p.push({ ax3, ay3 });
   //p.forEach(q => { point(q.ax3, q.ay3) });
-  i = i + PI / random(180, 360);
+  i = i + PI / tsp;
   //i=i>2*PI?0:i;
-  c = i == 0 ? c + 1 : c;
+ // c = i == 0 ? c + 1 : c;
 
   // l1+=0.01
   // l2-=0.01
@@ -66,7 +66,9 @@ function draw() {
   // osc.amp(ax,0.1)
 }
 
-
+function setql(x){
+  tsp=x;
+}
 function clearP() {
   px=0;py=0;
   i=0;
