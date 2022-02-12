@@ -30,8 +30,9 @@ s1 = 1;
 s2 = -1;
 s3 = 0.5;
 
-tsp=36
+tsp=100
 hider=false;
+colours=true;
 
 var cx,cy,ax,ay,ax2,ay2,ax3,ay3;
 function draw() {
@@ -60,7 +61,7 @@ function draw() {
 }
 
 function setql(x){
-  tsp=x;
+  tsp=x*x;
 }
 function clearP() {
   px=0;py=0;
@@ -93,7 +94,9 @@ function sets3(x) {
 function fhider(x){
 hider=x.checked;
 }
-
+function fcolours(x){
+  colours=x.checked;
+  }
 function step(){
 
   
@@ -109,9 +112,13 @@ function step(){
    ax3 = ax2 + l3 * sin(i * s3);
   ay3 = ay2 + l3 * cos(i * s3)
 
- 
+ if(colours){
   pg.colorMode(HSB)
-  pg.stroke((i*10)%360,100,100)
+  pg.stroke((i*10)%360,100,100)}
+  else{
+    pg.colorMode(RGB);
+    pg.stroke(128,222,128)
+  }
   pg.point(ax3,ay3);
   if(px>0) pg.line(px,py,ax3,ay3);
   px=ax3;
