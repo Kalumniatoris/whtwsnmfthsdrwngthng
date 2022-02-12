@@ -1,14 +1,21 @@
 var py=null;
 var px=null;
+var run;
 
+conf={
+
+
+}
 function setup() {
 
   createCanvas(screen.availWidth,screen.availHeight);
   pg=createGraphics(screen.availWidth,screen.availHeight);
   
   pg.stroke(128,200,128);
-  pg.strokeWeight(1.5)
+  pg.strokeWeight(2)
   stroke(128,128,128)
+
+
   // /  osc.start();
 }
 var i = 0;
@@ -23,35 +30,19 @@ s1 = 1;
 s2 = -1;
 s3 = 0.5;
 
-tsp=360
+tsp=36
 hider=false;
+
+var cx,cy,ax,ay,ax2,ay2,ax3,ay3;
 function draw() {
   
-
-
-  background(0);
-
-  cx = width / 2;
-  cy = height / 2;
-  ax = l1 * sin(i * s1) + cx;
-  ay = l1 * cos(i * s1) + cy;
- ax2 = ax + l2 * sin(i * s2);
-  ay2 = ay + l2 * cos(i * s2);
-   ax3 = ax2 + l3 * sin(i * s3);
-  ay3 = ay2 + l3 * cos(i * s3)
-
- 
-
-  pg.point(ax3,ay3);
-  if(px>0) pg.line(px,py,ax3,ay3);
-  px=ax3;
-  py=ay3;
+  step();
   image(pg,0,0)
 
-  if(!hider){
-  line(cx, cy, ax, ay);
-  line(ax, ay, ax2, ay2);
-  line(ax2, ay2, ax3, ay3);}
+   if(!hider){
+   line(cx, cy, ax, ay);
+   line(ax, ay, ax2, ay2);
+   line(ax2, ay2, ax3, ay3);}
 
   //p.push({ ax3, ay3 });
   //p.forEach(q => { point(q.ax3, q.ay3) });
@@ -62,6 +53,8 @@ function draw() {
   // l1+=0.01
   // l2-=0.01
   if (p.length >= 10000) { p = []; }
+   
+  //pg.background(color(0,3))
   // osc.freq(ay2-height/4,0.1)
   // osc.amp(ax,0.1)
 }
@@ -99,4 +92,30 @@ function sets3(x) {
 
 function fhider(x){
 hider=x.checked;
+}
+
+function step(){
+
+  
+
+  background(0);
+
+  cx = width / 2;
+  cy = height / 2;
+  ax = l1 * sin(i * s1) + cx;
+  ay = l1 * cos(i * s1) + cy;
+ ax2 = ax + l2 * sin(i * s2);
+  ay2 = ay + l2 * cos(i * s2);
+   ax3 = ax2 + l3 * sin(i * s3);
+  ay3 = ay2 + l3 * cos(i * s3)
+
+ 
+  pg.colorMode(HSB)
+  pg.stroke((i*10)%360,100,100)
+  pg.point(ax3,ay3);
+  if(px>0) pg.line(px,py,ax3,ay3);
+  px=ax3;
+  py=ay3;
+
+
 }
