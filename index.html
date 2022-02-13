@@ -18,38 +18,45 @@
 <body>
   <script src="sketch.js"></script>
 
-  
+
   <div>
     <form class="f1">
 
       <label>l1</label><input type="range" class="slider" min=0 max=100 step="1" value=50 oninput="setl1(this.value)"
         onchange="setl1(this.value)">
-      <label>s1</label><input type="range" class="slider" min=-1 max=1 step="0.01" value="1" oninput="sets1(this.value)"
+
+      <!--  <label>s1</label><input type="range" class="slider" min=-1 max=1 step="0.01" value="1" oninput="sets1(this.value)"
+        onchange="sets1(this.value)">-->
+      <input type="checkbox" name="revs1" onchange="rev(0,this.checked)">
+      <label>s1</label><input type="range" class="slider" min=0 max=1 step="0.01" value="1" oninput="sets1(this.value)"
         onchange="sets1(this.value)">
 
       <br>
       <label>l2</label><input type="range" class="slider" min=0 max=100 step="1" value=50 oninput="setl2(this.value)"
         onchange="setl2(this.value)">
-      <label>s2</label><input type="range" class="slider" min=-1 max=1 step="0.01" value="-1"
-        oninput="sets2(this.value)" onchange="sets2(this.value)">
+      <input type="checkbox" name="revs2" onchange="rev(1,this.checked)">
+      <label>s2</label><input type="range" class="slider" min=0 max=1 step="0.01" value="-1" oninput="sets2(this.value)"
+        onchange="sets2(this.value)">
+      <!--min -1 for previous verion-->
       <br>
       <label>l3</label><input type="range" class="slider" min=0 max=100 step="1" value=50 oninput="setl3(this.value)"
         onchange="setl3(this.value)">
-      <label>s3</label><input type="range" class="slider" min=-1 max=1 step="0.01" value="0.5"
+      <input type="checkbox" name="revs3" onchange="rev(2,this.checked)">
+      <label>s3</label><input type="range" class="slider" min=0 max=1 step="0.01" value="0.5"
         oninput="sets3(this.value)" onchange="sets3(this.value)">
       <br>
 
 
     </form>
     <form class="f1">
-      <label>colourful mode</label><input type="checkbox" onchange="fcolours(this)" checked> 
-      |<label>relative mode</label><input type="checkbox" onchange="frelative(this)" checked> 
-      
-      
+      <label>colourful mode</label><input type="checkbox" onchange="fcolours(this)" checked>
+      |<label>relative mode</label><input type="checkbox" onchange="frelative(this)" checked>
+
+
       <br>
 
       <label>hide tool</label><input type="checkbox" onchange="fhider(this)">
-     <br> <label>quality (-speed)</label><input type="range" class="slider" min=0.1 max=30 step="0.1" value="10"
+      <br> <label>quality (-speed)</label><input type="range" class="slider" min=0.1 max=30 step="0.1" value="10"
         oninput="setql(this.value)" onchange="setql(this.value)">
     </form>
 

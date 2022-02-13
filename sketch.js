@@ -3,8 +3,15 @@ var px=null;
 var run;
 
 conf={
+l:[50,50,50],
+s:[1,0.2,0.5],
+r:[1,1,1],
+hider:false,
+colours:true,
+relative:true,
+tsp:100,
 
-
+sound:false
 }
 function setup() {
 
@@ -15,53 +22,32 @@ function setup() {
   pg.strokeWeight(2)
   stroke(128,128,128)
 
-
+  synth = new p5.MonoSynth();
   // /  osc.start();
 }
 var i = 0;
 var c = 1;
-var p = [];
 
-l1 = 50;
-l2 = 50;
-l3 = 50;
-
-s1 = 1;
-s2 = -1;
-s3 = 0.5;
-
-tsp=100
-hider=false;
-colours=true;
-relative=true;
 var cx,cy,ax,ay,ax2,ay2,ax3,ay3;
 function draw() {
   
   step();
   image(pg,0,0)
 
-   if(!hider){
+   if(!conf.hider){
    line(cx, cy, ax, ay);
    line(ax, ay, ax2, ay2);
    line(ax2, ay2, ax3, ay3);}
 
   //p.push({ ax3, ay3 });
   //p.forEach(q => { point(q.ax3, q.ay3) });
-  i = i + PI / tsp;
-  //i=i>2*PI?0:i;
- // c = i == 0 ? c + 1 : c;
-
-  // l1+=0.01
-  // l2-=0.01
-  if (p.length >= 10000) { p = []; }
-   
-  //pg.background(color(0,3))
-  // osc.freq(ay2-height/4,0.1)
-  // osc.amp(ax,0.1)
+  i = i + PI / conf.tsp;
+  
+  
 }
 
 function setql(x){
-  tsp=x*x;
+  conf.tsp=x*x;
 }
 function clearP() {
   px=0;py=0;
@@ -70,71 +56,95 @@ function clearP() {
 }
 
 function setl1(x) {
-  l1 = x;
+  conf.l[0] = x;
 }
 function setl2(x) {
-  l2 = x;
+  conf.l[1] = x;
 }
 function setl3(x) {
-  l3 = x;
+  conf.l[2] = x;
 }
 
 function sets1(x) {
-  s1 = parseFloat(x);
+  conf.s[0] = parseFloat(x);
 }
 
 function sets2(x) {
-  s2 = parseFloat(x);
+  conf.s[1] = parseFloat(x);
 }
 
 function sets3(x) {
-  s3 =parseFloat(x);
+  conf.s[2] =parseFloat(x);
 }
 
 function fhider(x){
-hider=x.checked;
+  conf.hider=x.checked;
 }
 function fcolours(x){
-  colours=x.checked;
+  conf.colours=x.checked;
   }
 
   function frelative(x){
-    relative=x.checked;
+    conf.relative=x.checked;
     }
 function step(){
 
   
 
   background(0);
-
+  pg.background(color(0,1))
   cx = width / 2;
   cy = height / 2;
-  ax = l1 * sin(i * s1) + cx;
-  ay = l1 * cos(i * s1) + cy;
+  ax = conf.l[0] * sin(i * conf.s[0]*conf.r[0]) + cx;
+  ay = conf.l[0] * cos(i * conf.s[0]*conf.r[0]) + cy;
 
-  if(relative){
- ax2 = ax + l2 * sin(i * s2 + i*s1);
-  ay2 = ay + l2 * cos(i * s2 + i*s1);
-   ax3 = ax2 + l3 * sin(i * s3+ i*s2 +i*s1);
-  ay3 = ay2 + l3 * cos(i * s3+ i*s2 +i*s1);
+  if(conf.relative){
+ ax2 = ax + conf.l[1] * sin(i * conf.s[1]*conf.r[1] + i*conf.s[0]*conf.r[0]);
+  ay2 = ay + conf.l[1] * cos(i * conf.s[1]*conf.r[1] + i*conf.s[0]*conf.r[0]);
+   ax3 = ax2 + conf.l[2] * sin(i * conf.s[2]*conf.r[2]+ i*conf.s[1]*conf.r[1] +i*conf.s[0]*conf.r[0]);
+  ay3 = ay2 + conf.l[2] * cos(i * conf.s[2]*conf.r[2]+ i*conf.s[1]*conf.r[1] +i*conf.s[0]*conf.r[0]);
   }
   else{
-    ax2 = ax + l2 * sin(i * s2);
-    ay2 = ay + l2 * cos(i * s2);
-     ax3 = ax2 + l3 * sin(i * s3);
-    ay3 = ay2 + l3 * cos(i * s3);
+    ax2 = ax + conf.l[1] * sin(i * conf.s[1]*conf.r[1]);
+    ay2 = ay + conf.l[1] * cos(i * conf.s[1]*conf.r[1]);
+     ax3 = ax2 + conf.l[2] * sin(i * conf.s[2]*conf.r[2]);
+    ay3 = ay2 + conf.l[2] * cos(i * conf.s[2]*conf.r[2]);
   }
- if(colours){
+ if(conf.colours){
   pg.colorMode(HSB)
   pg.stroke((i*10)%360,100,100)}
+  
   else{
     pg.colorMode(RGB);
     pg.stroke(128,222,128)
   }
-  pg.point(ax3,ay3);
+//  / pg.point(ax3,ay3);
   if(px>0) pg.line(px,py,ax3,ay3);
   px=ax3;
   py=ay3;
 
+  if(conf.sound && (floor(millis())%(floor(1000/6)))==0){playsound()}
+}
 
+function setvar(v,x){
+  conf[v]=x;
+}
+
+function mouseClicked(x){
+  userStartAudio();
+}
+
+function playsound(){
+  
+  let note=map(cx,width/2-300,width/2+300,128,1024);
+  let vel=map(cy,height/2-300,height/2+300,0,1,true);
+  let time=0;
+  let dur=2/6;
+
+  synth.play(note,vel,time,dur)
+}
+
+function rev(x,bol){
+ let tmp=bol?-1:1;
+ conf.r[x]=tmp;
 }
