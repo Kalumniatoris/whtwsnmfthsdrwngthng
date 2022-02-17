@@ -13,6 +13,14 @@ tsp:100,
 
 sound:false
 }
+
+pre={
+  a:[1,1/2,1/3],
+  b:[1,1/3,1/6],
+  c:[1,1/2,3/4],
+  d:[1,0.9,0.9],
+  e:[1,1/3,0]
+}
 function setup() {
 
   createCanvas(screen.availWidth,screen.availHeight);
@@ -92,7 +100,7 @@ function step(){
   
 
   background(0);
-  pg.background(color(0,1))
+  //pg.background(color(0,1))
   cx = width / 2;
   cy = height / 2;
   ax = conf.l[0] * sin(i * conf.s[0]*conf.r[0]) + cx;
@@ -147,4 +155,9 @@ function playsound(){
 function rev(x,bol){
  let tmp=bol?-1:1;
  conf.r[x]=tmp;
+}
+
+function pres(x){
+  conf.s=pre[x];
+  clearP();
 }
