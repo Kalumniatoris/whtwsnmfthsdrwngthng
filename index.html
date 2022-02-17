@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Sketch</title>
+  <title>Spirograph? Or something related to? </title>
 
   <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -22,27 +22,27 @@
   <div>
     <form class="f1">
 
-      <label>l1</label><input type="range" class="slider" min=0 max=100 step="1" value=50 oninput="setl1(this.value)"
-        onchange="setl1(this.value)">
+      <label>l1</label><input type="range" id="l1slider" class="slider" min=0 max=100 step="1" value=50
+        oninput="setl1(this.value)" onchange="setl1(this.value)">
 
       <!--  <label>s1</label><input type="range" class="slider" min=-1 max=1 step="0.01" value="1" oninput="sets1(this.value)"
         onchange="sets1(this.value)">-->
-      <input type="checkbox" name="revs1" onchange="rev(0,this.checked)">
-      <label>s1</label><input type="range" class="slider" min=0 max=1 step="0.01" value="1" oninput="sets1(this.value)"
-        onchange="sets1(this.value)">
+      <input type="checkbox" id="r1ch" onchange="rev(0,this.checked)">
+      <label>s1</label><input type="range" id="s1slider" class="slider" min=0 max=1 step="0.01" value="1"
+        oninput="sets1(this.value)" onchange="sets1(this.value)">
 
       <br>
-      <label>l2</label><input type="range" class="slider" min=0 max=100 step="1" value=50 oninput="setl2(this.value)"
-        onchange="setl2(this.value)">
-      <input type="checkbox" name="revs2" onchange="rev(1,this.checked)">
-      <label>s2</label><input type="range" class="slider" min=0 max=1 step="0.01" value="-1" oninput="sets2(this.value)"
-        onchange="sets2(this.value)">
+      <label>l2</label><input type="range" id="l2slider" class="slider" min=0 max=100 step="1" value=50
+        oninput="setl2(this.value)" onchange="setl2(this.value)">
+      <input type="checkbox" id="r2ch"  onchange="rev(1,this.checked)">
+      <label>s2</label><input type="range" id="s2slider" class="slider" min=0 max=1 step="0.01" value="-1"
+        oninput="sets2(this.value)" onchange="sets2(this.value)">
       <!--min -1 for previous verion-->
       <br>
-      <label>l3</label><input type="range" class="slider" min=0 max=100 step="1" value=50 oninput="setl3(this.value)"
-        onchange="setl3(this.value)">
-      <input type="checkbox" name="revs3" onchange="rev(2,this.checked)">
-      <label>s3</label><input type="range" class="slider" min=0 max=1 step="0.01" value="0.5"
+      <label>l3</label><input type="range" id="l3slider" class="slider" min=0 max=100 step="1" value=50
+        oninput="setl3(this.value)" onchange="setl3(this.value)">
+      <input type="checkbox" id="r3ch" onchange="rev(2,this.checked)">
+      <label>s3</label><input type="range" id="s3slider" class="slider" min=0 max=1 step="0.01" value="0.5"
         oninput="sets3(this.value)" onchange="sets3(this.value)">
       <br>
 
