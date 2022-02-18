@@ -2,6 +2,7 @@ var py = null;
 var px = null;
 var run;
 
+
 conf = {
   l: [50, 50, 50],
   s: [1, 0.2, 0.5],
@@ -15,13 +16,20 @@ conf = {
 }
 
 pre = {
-  a: [1, 1 / 2, 1 / 3],
-  b: [1 / 6, 1 / 3, 1],
-  c: [-1 / 4, 1 / 2, 3 / 4],
-  d: [1, 0.9, 0.9],
-  e: [1, 1 / 3, 0]
+  s: [[1, 1 / 2, 1 / 3],
+   [1 / 6, 1 / 3, 1],
+   [-1 / 4, 1 / 2, 3 / 4],
+   [1, 0.9, 0.9],
+   [1, 1 / 3, 0],
+   [1/3,1,2/3],
+   [1,-1,-1/2],
+   [1/3,1/6,1/9],
+   [1/9,1/6,1/3]
+  
+  ]
 }
 function setup() {
+
 
   createCanvas(screen.availWidth, screen.availHeight);
   pg = createGraphics(screen.availWidth, screen.availHeight);
@@ -30,6 +38,10 @@ function setup() {
   pg.strokeWeight(2)
   stroke(128, 128, 128)
 
+  cx = width / 2;
+  cy = height / 2;
+
+  fillpres();
   synth = new p5.MonoSynth();
   // /  osc.start();
 }
@@ -102,8 +114,7 @@ function step() {
 
   background(0);
   //pg.background(color(0,1))
-  cx = width / 2;
-  cy = height / 2;
+
   ax = conf.l[0] * sin(i * conf.s[0] * conf.r[0]) + cx;
   ay = conf.l[0] * cos(i * conf.s[0] * conf.r[0]) + cy;
 
@@ -160,7 +171,7 @@ function rev(x, bol) {
 }
 
 function pres(x) {
-  conf.s = pre[x];
+  conf.s = pre.s[x];
 
 
   clearP();
@@ -192,4 +203,18 @@ function updateSliders() {
   } else { s3s.value = conf.s[2];
     c3.checked=true;
   }
+}
+
+function fillpres(){
+  console.log("fillpres");
+   let selpr=document.getElementById("selpr");
+
+   for(let q=0;q<pre.s.length;q+=1){
+      console.log(q);
+
+      var opt=document.createElement('option');
+      opt.vale=q;
+      opt.innerHTML=q;
+      selpr.appendChild(opt);
+   }
 }
