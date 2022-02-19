@@ -4,6 +4,7 @@ var run;
 
 
 conf = {
+  colour:"#55ecba",
   l: [50, 50, 50],
   s: [1, 0.2, 0.5],
   r: [1, 1, 1],
@@ -37,7 +38,7 @@ function setup() {
   createCanvas(screen.availWidth, screen.availHeight);
   pg = createGraphics(screen.availWidth, screen.availHeight);
 
-  pg.stroke(128, 200, 128);
+  pg.stroke(color(conf.colour));
   pg.strokeWeight(2)
   stroke(128, 128, 128)
 
@@ -140,7 +141,7 @@ function step() {
 
   else {
     pg.colorMode(RGB);
-    pg.stroke(128, 222, 128)
+    pg.stroke(color(conf.colour));
   }
   //  / pg.point(ax3,ay3);
   if (px > 0) pg.line(px, py, ax3, ay3);
@@ -209,15 +210,20 @@ function updateSliders() {
 }
 
 function fillpres(){
-  console.log("fillpres");
+  //console.log("fillpres");
    let selpr=document.getElementById("selpr");
 
    for(let q=0;q<pre.s.length;q+=1){
-      console.log(q);
+     // console.log(q);
 
       var opt=document.createElement('option');
       opt.vale=q;
       opt.innerHTML=q;
       selpr.appendChild(opt);
    }
+}
+
+function setColour(col){
+  conf.colour=col;
+
 }
