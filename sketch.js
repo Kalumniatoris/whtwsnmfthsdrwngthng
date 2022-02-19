@@ -2,7 +2,7 @@ var py = null;
 var px = null;
 var run;
 
-
+var pg;
 conf = {
   colour:"#55ecba",
   l: [50, 50, 50],
@@ -32,6 +32,7 @@ pre = {
   
   ]
 }
+
 function setup() {
 
 
@@ -49,6 +50,9 @@ function setup() {
   synth = new p5.MonoSynth();
   // /  osc.start();
 }
+
+
+
 var i = 0;
 var c = 1;
 
@@ -226,4 +230,9 @@ function fillpres(){
 function setColour(col){
   conf.colour=col;
 
+}
+
+function saveWObgt(){
+  console.log("rt");
+  pg.save("result.png");
 }
